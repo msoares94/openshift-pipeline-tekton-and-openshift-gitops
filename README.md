@@ -40,7 +40,7 @@ We're gonna use the *spring-pipeline* project to build and run the openshift pip
 
 Ok, without futher ado, we can finally start the Continuous Integration, so we're gonna create the pipeline as img below:
 
-![Pipeline](https://github.com/rafamqrs/demo-pipeline-tkn/imgs/pipeline.png)
+![Pipeline](https://github.com/rafamqrs/demo-pipeline-tkn/blob/main/imgs/pipeline.png)
 
 ### Triggers - TKN
 https://dzone.com/articles/building-a-multi-feature-pipeline-with-openshift-p
