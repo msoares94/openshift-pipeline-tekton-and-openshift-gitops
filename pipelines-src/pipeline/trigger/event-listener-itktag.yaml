@@ -1,0 +1,88 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  creationTimestamp: '2022-06-17T19:15:16Z'
+  finalizers:
+    - eventlisteners.triggers.tekton.dev
+  generation: 1
+  managedFields:
+    - apiVersion: triggers.tekton.dev/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:serviceAccountName': {}
+          'f:triggers': {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-06-17T19:15:16Z'
+    - apiVersion: triggers.tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"eventlisteners.triggers.tekton.dev"': {}
+      manager: openshift-pipelines-triggers-controller
+      operation: Update
+      time: '2022-06-17T19:15:16Z'
+    - apiVersion: triggers.tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:address':
+            .: {}
+            'f:url': {}
+          'f:conditions': {}
+          'f:configuration':
+            .: {}
+            'f:generatedName': {}
+      manager: openshift-pipelines-triggers-controller
+      operation: Update
+      subresource: status
+      time: '2022-06-17T19:15:16Z'
+  name: event-listener-itktag
+  namespace: spring-pipeline
+  resourceVersion: '3961153'
+  uid: ee9bac71-e75b-4cf7-bfee-79a4d2a25d4b
+spec:
+  namespaceSelector: {}
+  resources: {}
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+        - kind: ClusterTriggerBinding
+          ref: github-push
+      template:
+        ref: trigger-template-hello-service-spring-dev-ci-fsazpc
+status:
+  address:
+    url: 'http://el-event-listener-itktag.spring-pipeline.svc.cluster.local:8080'
+  conditions:
+    - lastTransitionTime: '2022-06-17T19:15:24Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2022-06-17T19:15:24Z'
+      message: Deployment exists
+      status: 'True'
+      type: Deployment
+    - lastTransitionTime: '2022-06-17T19:15:24Z'
+      message: >-
+        ReplicaSet "el-event-listener-itktag-6858b8b548" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+    - lastTransitionTime: '2022-06-17T19:15:24Z'
+      message: EventListener is ready
+      status: 'True'
+      type: Ready
+    - lastTransitionTime: '2022-06-17T19:15:24Z'
+      message: Service exists
+      status: 'True'
+      type: Service
+  configuration:
+    generatedName: el-event-listener-itktag
