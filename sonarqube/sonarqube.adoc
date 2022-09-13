@@ -7,3 +7,5 @@ oc create -f https://github.com/rafamqrs/demo-pipeline-tkn/sonarqube/sonarqube-t
 oc get template
 
 oc new-app --template=sonarqube
+
+oc get pods
