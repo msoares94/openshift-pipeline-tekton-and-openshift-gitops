@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: workspace
+  name: workspaces
   namespace: spring-pipeline
 spec:
   accessModes:
