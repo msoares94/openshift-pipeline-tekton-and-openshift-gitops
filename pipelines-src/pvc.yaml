@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: workspace-teste1
+  name: workspace
   namespace: spring-pipeline
 spec:
   accessModes:
@@ -9,6 +9,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: gp2
+  storageClassName: gp2-csi
   volumeMode: Filesystem
 
