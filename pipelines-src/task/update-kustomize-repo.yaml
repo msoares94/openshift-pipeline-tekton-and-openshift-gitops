@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: update-kustomize-repo
+  namespace: spring-pipeline
   annotations:
     tekton.dev/displayName: "Update Kustomize Git Repository"
 spec:
