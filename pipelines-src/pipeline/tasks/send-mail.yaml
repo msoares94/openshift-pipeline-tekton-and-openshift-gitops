@@ -7,34 +7,7 @@ metadata:
     tekton.dev/pipelines.minVersion: 0.12.1
     tekton.dev/platforms: 'linux/amd64,linux/s390x,linux/ppc64le,linux/arm64'
     tekton.dev/tags: mail
-  resourceVersion: '6233683'
   name: sendmail
-  uid: 15243020-81d2-45bb-af87-5d8a66816e2d
-  creationTimestamp: '2022-06-21T21:10:51Z'
-  generation: 1
-  managedFields:
-    - apiVersion: tekton.dev/v1beta1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            .: {}
-            'f:tekton.dev/categories': {}
-            'f:tekton.dev/displayName': {}
-            'f:tekton.dev/pipelines.minVersion': {}
-            'f:tekton.dev/platforms': {}
-            'f:tekton.dev/tags': {}
-          'f:labels':
-            .: {}
-            'f:app.kubernetes.io/version': {}
-        'f:spec':
-          .: {}
-          'f:description': {}
-          'f:params': {}
-          'f:steps': {}
-      manager: Mozilla
-      operation: Update
-      time: '2022-06-21T21:10:51Z'
   namespace: spring-pipeline
   labels:
     app.kubernetes.io/version: '0.1'

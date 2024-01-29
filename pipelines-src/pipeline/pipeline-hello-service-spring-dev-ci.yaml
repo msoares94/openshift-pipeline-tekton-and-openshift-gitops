@@ -3,8 +3,6 @@ kind: Pipeline
 metadata:
   name: hello-service-spring-dev-ci
   namespace: spring-pipeline
-  resourceVersion: '3242193'
-  uid: e2320c0c-5c73-4d54-bf63-cef9556461af
 spec:
   params:
     - default: hello-service

@@ -7,35 +7,7 @@ metadata:
     tekton.dev/pipelines.minVersion: 0.12.1
     tekton.dev/platforms: linux/amd64
     tekton.dev/tags: security
-  resourceVersion: '1111294'
   name: sonarqube-scanner
-  uid: 22166b2b-1e27-4727-a8d9-db4876ed4151
-  creationTimestamp: '2022-06-14T20:40:35Z'
-  generation: 2
-  managedFields:
-    - apiVersion: tekton.dev/v1beta1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            .: {}
-            'f:tekton.dev/categories': {}
-            'f:tekton.dev/displayName': {}
-            'f:tekton.dev/pipelines.minVersion': {}
-            'f:tekton.dev/platforms': {}
-            'f:tekton.dev/tags': {}
-          'f:labels':
-            .: {}
-            'f:app.kubernetes.io/version': {}
-        'f:spec':
-          .: {}
-          'f:description': {}
-          'f:params': {}
-          'f:steps': {}
-          'f:workspaces': {}
-      manager: Mozilla
-      operation: Update
-      time: '2022-06-14T20:40:35Z'
   namespace: spring-pipeline
   labels:
     app.kubernetes.io/version: '0.2'
