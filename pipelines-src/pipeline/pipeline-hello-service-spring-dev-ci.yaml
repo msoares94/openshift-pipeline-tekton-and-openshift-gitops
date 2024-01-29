@@ -125,7 +125,7 @@ spec:
             docker://image-registry.openshift-image-registry.svc:5000/$(params.NAMESPACE_DEV)/$(params.APP_NAME):dev-$(tasks.generate-tag.results.image-tag)
         - name: destImageURL
           value: >-
-            docker://external-registry-nexus.apps.cluster-c925.c925.example.opentlc.com/$(params.NAMESPACE_DEV)/$(params.APP_NAME):prod-$(tasks.generate-tag.results.image-tag)
+            docker://nexus-nexus.apps.cluster-vsqb4.vsqb4.sandbox2176.opentlc.com/$(params.NAMESPACE_DEV)/$(params.APP_NAME):prod-$(tasks.generate-tag.results.image-tag)
         - name: srcTLSverify
           value: 'false'
         - name: destTLSverify
@@ -141,7 +141,7 @@ spec:
     - name: update-kustomize-repo
       params:
         - name: gitRepositoryUrl
-          value: 'https://github.com/rafamqrs/hellosvc-kustomize-repo'
+          value: 'https://github.com/msoares94/hellosvc-kustomize-repo'
         - name: gitRepositoryRevision
           value: prod
         - name: gitPath

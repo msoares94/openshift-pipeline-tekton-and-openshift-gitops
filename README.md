@@ -9,11 +9,11 @@ There are   projects that we need to this sample:
 - sonarqube
 
 ### Deploy and create a Nexus instance
-[NEXUS](https://github.com/almeidarommel/demo-pipeline-tkn/nexus/README.md)
+[NEXUS](https://github.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/blob/main/nexus/README.md)
 
 
 ### Deploy SonarQube
-[SONARQUBE](https://github.com/almeidarommel/demo-pipeline-tkn/sonarqube/sonarqube.adoc)
+[SONARQUBE](https://github.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/blob/main/sonarqube/sonarqube.adoc)
 
 
 ### Create the springs projects.
@@ -40,18 +40,18 @@ We're gonna use the *spring-pipeline* project to build and run the openshift pip
 
 Ok, without futher ado, we can finally start the Continuous Integration, so we're gonna create the pipeline as img below:
 
-![Pipeline](https://github.com/almeidarommel/demo-pipeline-tkn/blob/main/imgs/pipeline.png)
+![Pipeline](https://github.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/blob/main/imgs/pipeline.png)
 
 Now let's follow the steps below: 
 1- Create a persistent volume for the workspace
 ```shell
-oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/main/pipelines-src/pvc.yaml
+oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/main/pipelines-src/pvc.yaml
 ```
 2- Create all required tasks
 ```shell
-oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/main/pipelines-src/task/sonarqube-scanner.yaml
-oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/main/pipelines-src/task/generate-tag.yaml
-oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/main/pipelines-src/task/update-kustomize-repo.yaml
+oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/main/pipelines-src/task/sonarqube-scanner.yaml
+oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/main/pipelines-src/task/generate-tag.yaml
+oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/main/pipelines-src/task/update-kustomize-repo.yaml
 ```
 
 3- Create a secret with the github credential
@@ -80,7 +80,7 @@ oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/ma
    -n spring-pipeline
 
     # Annotate the secret to specify a container registry URL, you can use the service, but the ideia here was to use an external registry
-    oc annotate secret nexus-access "tekton.dev/docker-0=https://external-registry-nexus.apps.cluster-c925.c925.example.opentlc.com" -n spring-pipeline
+    oc annotate secret nexus-access "tekton.dev/docker-0=${NEXUS_URL}" -n spring-pipeline
 
     # Link the secret to the pipeline service account
     oc secrets link pipeline nexus-access    
@@ -88,7 +88,7 @@ oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/ma
 
 7- Create the pipeline
 ```shell
-    oc apply -f https://raw.githubusercontent.com/almeidarommel/demo-pipeline-tkn/main/pipelines-src/pipeline/pipeline.yaml 
+    oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops/main/pipelines-src/pipeline/pipeline-hello-service-spring-dev-ci.yaml
 ```
 
 ### Triggers - TKN
