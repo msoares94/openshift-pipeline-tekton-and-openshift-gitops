@@ -24,9 +24,9 @@ spec:
     - name: git-clone
       params:
         - name: url
-          value: 'https://github.com/rafamqrs/demo-pipeline-tkn'
+          value: 'https://github.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops'
         - name: revision
-          value: development
+          value: main
         - name: submodules
           value: 'true'
         - name: depth
