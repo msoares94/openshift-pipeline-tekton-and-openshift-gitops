@@ -25,7 +25,7 @@ spec:
       description: Maven mirror for Maven Builds
       name: MAVEN_MIRROR_URL
       type: string
-    - default: external-registry-nexus.apps.cluster-c925.c925.example.opentlc.com
+    - default: nexus-nexus.apps.cluster-vsqb4.vsqb4.sandbox2176.opentlc.com
       description: External Registry (Nexus) for the Images
       name: EXTERNAL_REG_NEXUS_URL
       type: string
@@ -172,7 +172,7 @@ spec:
         - oc-tag-image-for-dev
       taskRef:
         kind: ClusterTask
-        name: openshift-client-v0-22-0
+        name: openshift-client-1-13-0
   workspaces:
     - name: output
     - name: maven-settings
