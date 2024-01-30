@@ -25,7 +25,7 @@ spec:
       description: Maven mirror for Maven Builds
       name: MAVEN_MIRROR_URL
       type: string
-    - default: nexus-nexus.apps.cluster-vsqb4.vsqb4.sandbox2176.opentlc.com
+    - default: quay.io/demo-pipelines
       description: External Registry (Nexus) for the Images
       name: EXTERNAL_REG_NEXUS_URL
       type: string
@@ -102,6 +102,27 @@ spec:
       taskRef:
         kind: ClusterTask
         name: openshift-client
+    - name: update-kustomize-repo-dev
+      params:
+        - name: gitRepositoryUrl
+          value: 'https://github.com/msoares94/hellosvc-kustomize-repo'
+        - name: gitRepositoryRevision
+          value: main
+        - name: gitPath
+          value: hello-service-kustomize/overlays/development
+        - name: fileName
+          value: deployment-patches.yaml
+        - name: image
+          value: hello-service
+        - name: imageTag
+          value: dev-\$(tasks.generate-tag.results.image-tag)
+        - name: verbose
+          value: 'true'
+      runAfter:
+        - oc-tag-image-for-dev
+      taskRef:
+        kind: Task
+        name: update-kustomize-repo
     - name: sonarqube-scanner
       params:
         - name: SONAR_HOST_URL
@@ -126,7 +147,7 @@ spec:
             docker://image-registry.openshift-image-registry.svc:5000/$(params.NAMESPACE_DEV)/$(params.APP_NAME):dev-$(tasks.generate-tag.results.image-tag)
         - name: destImageURL
           value: >-
-            docker://nexus-nexus.apps.cluster-vsqb4.vsqb4.sandbox2176.opentlc.com/$(params.NAMESPACE_DEV)/$(params.APP_NAME):prod-$(tasks.generate-tag.results.image-tag)
+            docker://quay.io/demo-pipelines/$(params.APP_NAME):prod-$(tasks.generate-tag.results.image-tag)
         - name: srcTLSverify
           value: 'false'
         - name: destTLSverify
@@ -139,7 +160,7 @@ spec:
       workspaces:
         - name: images-url
           workspace: output
-    - name: update-kustomize-repo
+    - name: update-kustomize-repo-prod
       params:
         - name: gitRepositoryUrl
           value: 'https://github.com/msoares94/hellosvc-kustomize-repo'
