@@ -187,7 +187,7 @@ spec:
           value:
             - set
             - image
-            - dc
+            - deployments
             - $(params.APP_NAME)
             - >-
               $(params.APP_NAME)=image-registry.openshift-image-registry.svc:5000/$(params.NAMESPACE_DEV)/$(params.APP_NAME):dev-$(tasks.generate-tag.results.image-tag)

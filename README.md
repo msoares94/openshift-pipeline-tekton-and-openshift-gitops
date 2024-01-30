@@ -98,5 +98,4 @@ oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekto
 ```
 
 ### Triggers - TKN
-https://dzone.com/articles/building-a-multi-feature-pipeline-with-openshift-p
-
+https://dzone.com/articles/building-a-multi-feature-pipeline-with-openshift-pipelines
