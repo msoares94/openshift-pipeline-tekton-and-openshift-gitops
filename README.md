@@ -83,7 +83,13 @@ oc apply -f https://raw.githubusercontent.com/msoares94/openshift-pipeline-tekto
     oc annotate secret nexus-access "tekton.dev/docker-0=${NEXUS_URL}" -n spring-pipeline
 
     # Link the secret to the pipeline service account
-    oc secrets link pipeline nexus-access    
+    oc secrets link pipeline nexus-access
+
+    # Quay.io
+    oc create secret docker-registry quay.io --docker-username=${USERNAME} --docker-server=quay.io --docker-email=${EMAIL} --docker-password=${PASSWORD}
+    
+    oc secrets link default quay.io --for=pull --namespace=spring-pipeline
+    oc secrets link pipeline quay.io --namespace=spring-pipeline
 ```
 
 7- Create the pipeline

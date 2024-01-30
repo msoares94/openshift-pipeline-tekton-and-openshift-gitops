@@ -21,7 +21,7 @@ spec:
       name: NAMESPACE_DEV
       type: string
     - default: >-
-        http://example-nexusrepo-sonatype-nexus-service.nexus.svc:8081/repository/maven-all-public/
+        http://example-nexusrepo-sonatype-nexus-service.nexus.svc:8081/repository/maven-public/
       description: Maven mirror for Maven Builds
       name: MAVEN_MIRROR_URL
       type: string
@@ -29,11 +29,14 @@ spec:
       description: External Registry (Nexus) for the Images
       name: EXTERNAL_REG_NEXUS_URL
       type: string
+    - default: sqp_8dab635a854801eb36f81416aa393457282f836d
+      name: SONAR_AUTH_TOKEN_SCANNER
+      type: string      
   tasks:
     - name: git-clone
       params:
         - name: url
-          value: 'https://github.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops.git'
+          value: 'https://github.com/msoares94/openshift-pipeline-tekton-and-openshift-gitops'
         - name: revision
           value: main
         - name: submodules
@@ -41,14 +44,14 @@ spec:
         - name: depth
           value: '1'
         - name: sslVerify
-          value: 'false'
+          value: 'true'
         - name: deleteExisting
           value: 'true'
         - name: verbose
           value: 'true'
         - name: gitInitImage
           value: >-
-            registry.redhat.io/openshift-pipelines-tech-preview/pipelines-git-init-rhel8:v1.3.1-1
+            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:da1aedf0b17f2b9dd2a46edc93ff1c0582989414b902a28cd79bad8a035c9ea4
         - name: userHome
           value: /tekton/home
       taskRef:
@@ -103,11 +106,11 @@ spec:
       params:
         - name: SONAR_HOST_URL
           value: >-
-            https://sonarqube-sonarqube.apps.cluster-c925.c925.example.opentlc.com
+            https://sonarqube-sonarqube.apps.cluster-vsqb4.vsqb4.sandbox2176.opentlc.com
         - name: SONAR_PROJECT_KEY
-          value: Spring-CI
+          value: $(params.APP_NAME)
         - name: SONAR_AUTH_TOKEN
-          value: sqp_7289b636287ea91e1cef57ef89615b74c83a0343
+          value: $(params.SONAR_AUTH_TOKEN_SCANNER)
       runAfter:
         - set-image-for-dev
       taskRef:
@@ -172,7 +175,7 @@ spec:
         - oc-tag-image-for-dev
       taskRef:
         kind: ClusterTask
-        name: openshift-client-1-13-0
+        name: openshift-client
   workspaces:
     - name: output
     - name: maven-settings
